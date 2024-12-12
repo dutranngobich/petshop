@@ -1,0 +1,10 @@
+model User {
+    id       String  @id @default(uuid())
+    fullname String
+    avatar   String?
+    email    String  @unique
+    password String
+    dob      String
+    gender   Gender
+    role     Role
+}

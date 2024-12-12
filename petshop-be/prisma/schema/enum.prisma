@@ -1,0 +1,10 @@
+enum Role {
+    ADMIN
+    CUSTOMER
+}
+
+enum Gender {
+    MALE
+    FEMALE
+    OTHER
+}

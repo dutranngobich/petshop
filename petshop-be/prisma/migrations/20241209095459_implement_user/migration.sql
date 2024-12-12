@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `user` MODIFY `dob` VARCHAR(191) NOT NULL;
