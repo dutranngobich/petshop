@@ -1,11 +1,11 @@
 import { Request, Response } from 'express'
 import UserService from './user.service'
 import { z } from 'zod'
-import { changePasswordSchema, createUserSchema } from './user.validator'
-import { CreateUserType } from './user.type'
+import { changePasswordSchema, createUserSchema } from './user.schema'
 import { validationMessages } from '../../utils/validateMessage'
 import argon2d from 'argon2'
 import { setTokenBlacklist } from '../../utils/redisUtils'
+import { User } from '@prisma/client'
 
 class UserController {
   static createUser = async (req: Request, res: Response) => {
@@ -67,7 +67,7 @@ class UserController {
   static updateUser = async (req: Request, res: Response) => {
     try {
       const userId = req.params.id
-      const data: Partial<CreateUserType> = req.body
+      const data: Partial<Omit<User, 'id'>> = req.body
       const updatedUser = await UserService.updateUser(userId, data)
       if (!updatedUser) {
         res.status(404).json({ message: 'User not found' })

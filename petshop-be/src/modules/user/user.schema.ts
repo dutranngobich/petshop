@@ -12,7 +12,7 @@ const checkExistEmail = async (email: string) => {
 
 export const createUserSchema = z.object({
   fullname: z.string({ required_error: validationMessages.required }),
-  avatar: z.string({ required_error: validationMessages.required }).optional(),
+  avatar: z.string({ required_error: validationMessages.required }).nullable(),
   email: z
     .string({ required_error: validationMessages.required })
     .email(validationMessages.emailInvalid)

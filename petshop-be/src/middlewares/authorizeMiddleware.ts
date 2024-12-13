@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import UserService from '../api/user/user.service'
+import UserService from '../modules/user/user.service'
 import { Role } from '@prisma/client'
 import { validationMessages } from '../utils/validateMessage'
 
