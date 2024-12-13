@@ -1,9 +1,9 @@
+import { User } from '@prisma/client'
 import { prisma } from '../../database/prisma'
 import { handlePrismaError } from '../../utils/prismaErrorCustom'
-import { CreateUserType } from './user.type'
 
 class UserService {
-  static async createUser(user: CreateUserType) {
+  static async createUser(user: Omit<User, 'id'>) {
     const userResponse = await prisma.user.create({ data: user })
     return userResponse
   }
@@ -43,7 +43,7 @@ class UserService {
       handlePrismaError(error)
     }
   }
-  static async updateUser(userId: string, data: Partial<CreateUserType>) {
+  static async updateUser(userId: string, data: Partial<Omit<User, 'id'>>) {
     try {
       return await prisma.user.update({
         where: {
